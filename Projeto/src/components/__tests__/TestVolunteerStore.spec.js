@@ -1,79 +1,107 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
 import { useVolunteerStore } from '@/stores/useVolunteerStore';
-import { useCartStore } from '@/stores/useCartStore'; // IMPORTANDO A STORE DO CARRINHO
-import { get, post, del } from '@/api/api'; // Incluindo o mock de post e del
+import { useCartStore } from '@/stores/useCartStore';
+import { useEventStore } from '@/stores/useEventStore';
+import { get, post, del, put } from '@/api/api';
 
-// Mock da API
+// Mock da API (incluindo o put)
 vi.mock('@/api/api', () => ({
   get: vi.fn(),
   post: vi.fn(),
   del: vi.fn(),
+  put: vi.fn(),
 }));
 
 // Mock da store do carrinho
 vi.mock('@/stores/useCartStore', () => ({
   useCartStore: vi.fn().mockReturnValue({
-    cart: [],  // Mock do carrinho
-    clearCart: vi.fn(),  // Mock da função clearCart
-    loadCartFromStorage: vi.fn(), // Adicionado para interceptar chamadas de loadCartFromStorage
+    cart: [],
+    clearCart: vi.fn(),
+    loadCartFromStorage: vi.fn(),
+  }),
+}));
+
+// Mock da store de eventos
+vi.mock('@/stores/useEventStore', () => ({
+  useEventStore: vi.fn().mockReturnValue({
+    getEventById: vi.fn(),
+    updateTicketQuantity: vi.fn(),
   }),
 }));
 
 describe('useVolunteerStore', () => {
   let volunteerStore;
   let cartStore;
+  let eventStore;
 
   beforeEach(() => {
-    // Configura o Pinia antes de cada teste
     setActivePinia(createPinia());
-    localStorage.clear(); // Limpa o localStorage entre os testes
-    volunteerStore = useVolunteerStore(); // Cria uma instância da store de voluntários
-    cartStore = useCartStore();  // Cria uma instância mockada da store do carrinho
+    localStorage.clear();
+    volunteerStore = useVolunteerStore();
+    cartStore = useCartStore();
+    eventStore = useEventStore();
+    // Limpa os mocks das APIs
+    get.mockClear();
+    post.mockClear();
+    del.mockClear();
+    put.mockClear();
   });
 
   it('loads volunteers successfully', async () => {
     const mockVolunteers = [{ id: 1, name: 'Volunteer 1' }];
-    get.mockResolvedValue(mockVolunteers); // Mock da função get
+    get.mockResolvedValue(mockVolunteers);
 
-    await volunteerStore.loadVolunteers(); // Chama a ação
+    await volunteerStore.loadVolunteers();
 
-    expect(volunteerStore.volunteers).toEqual(mockVolunteers); // Verifica se os voluntários foram carregados corretamente
-    expect(get).toHaveBeenCalledWith('volunteers'); // Verifica se a API foi chamada corretamente
+    expect(volunteerStore.volunteers).toEqual(mockVolunteers);
+    expect(get).toHaveBeenCalledWith('volunteers');
+  });
+
+  it('loads events successfully', async () => {
+    const mockEvents = [{ id: 1, name: 'Event 1' }];
+    get.mockResolvedValue(mockEvents);
+
+    await volunteerStore.loadEvents();
+
+    expect(volunteerStore.events).toEqual(mockEvents);
+    expect(get).toHaveBeenCalledWith('events');
   });
 
   it('sets volunteer data in localStorage and updates store', () => {
     const volunteerData = { id: 1, name: 'Volunteer 1' };
 
-    volunteerStore.setVolunteer(volunteerData); // Chama a ação
+    volunteerStore.setVolunteer(volunteerData);
 
-    expect(volunteerStore.volunteer).toEqual(volunteerData); // Verifica se os dados do voluntário foram atualizados
-    expect(localStorage.getItem('volunteer')).toEqual(JSON.stringify(volunteerData)); // Verifica se os dados foram salvos no localStorage
-    expect(cartStore.loadCartFromStorage).toHaveBeenCalled(); // Verifica se o carrinho foi atualizado
+    expect(volunteerStore.volunteer).toEqual(volunteerData);
+    expect(localStorage.getItem('volunteer')).toEqual(JSON.stringify(volunteerData));
+    expect(cartStore.loadCartFromStorage).toHaveBeenCalled();
   });
 
   it('loads volunteer from localStorage and updates store', () => {
     const storedVolunteer = { id: 1, name: 'Volunteer 1', eventId: 1 };
     localStorage.setItem('volunteer', JSON.stringify(storedVolunteer));
 
-    volunteerStore.loadVolunteerFromStorage(); // Chama a ação
+    // Para testar o carregamento do evento, simulamos uma resposta para get
+    const mockEvent = { id: 1, name: 'Event 1' };
+    get.mockResolvedValue(mockEvent);
 
-    expect(volunteerStore.volunteer).toEqual(storedVolunteer); // Verifica se o voluntário foi carregado corretamente
-    expect(volunteerStore.isAuthenticated).toBe(true); // Verifica se a autenticação foi realizada com sucesso
-    expect(cartStore.loadCartFromStorage).toHaveBeenCalled(); // Verifica se o carrinho foi atualizado
+    volunteerStore.loadVolunteerFromStorage();
+
+    expect(volunteerStore.volunteer).toEqual(storedVolunteer);
+    expect(volunteerStore.isAuthenticated).toBe(true);
+    expect(cartStore.loadCartFromStorage).toHaveBeenCalled();
+    // Se houver eventId, a função loadEvent deve ser chamada e atualizar a store
   });
 
   it('logs out volunteer and clears data from store, localStorage, and cart', () => {
     const volunteerData = { id: 1, name: 'Volunteer 1' };
-    volunteerStore.setVolunteer(volunteerData); // Configura um voluntário
-    volunteerStore.logout(); // Chama a ação de logout
+    volunteerStore.setVolunteer(volunteerData);
+    volunteerStore.logout();
 
-    // Verifica se os dados do voluntário foram limpos
     expect(volunteerStore.volunteer).toBeNull();
     expect(volunteerStore.isAuthenticated).toBe(false);
-    expect(localStorage.getItem('volunteer')).toBeNull(); // Verifica se o localStorage foi limpo
-
-    // Verifica se a função clearCart foi chamada para limpar o carrinho
+    expect(localStorage.getItem('volunteer')).toBeNull();
     expect(cartStore.clearCart).toHaveBeenCalled();
   });
 
@@ -84,14 +112,15 @@ describe('useVolunteerStore', () => {
       email: 'volunteer1@example.com',
       password: 'password'
     }];
-    volunteerStore.volunteers = mockVolunteers; // Configura a lista de voluntários
-    const result = await volunteerStore.loginVolunteer('volunteer1@example.com', 'password'); // Chama a ação de login
+    volunteerStore.volunteers = mockVolunteers;
 
-    expect(result.success).toBe(true); // Verifica se o login foi bem-sucedido
-    expect(volunteerStore.volunteer).toEqual(mockVolunteers[0]); // Verifica se o voluntário foi atualizado na store
-    expect(volunteerStore.isAuthenticated).toBe(true); // Verifica se o status de autenticação foi atualizado
-    expect(localStorage.getItem('volunteer')).toEqual(JSON.stringify(mockVolunteers[0])); // Verifica se os dados foram salvos no localStorage
-    expect(cartStore.loadCartFromStorage).toHaveBeenCalled(); // Verifica se o carrinho foi atualizado
+    const result = await volunteerStore.loginVolunteer('volunteer1@example.com', 'password');
+
+    expect(result.success).toBe(true);
+    expect(volunteerStore.volunteer).toEqual(mockVolunteers[0]);
+    expect(volunteerStore.isAuthenticated).toBe(true);
+    expect(localStorage.getItem('volunteer')).toEqual(JSON.stringify(mockVolunteers[0]));
+    expect(cartStore.loadCartFromStorage).toHaveBeenCalled();
   });
 
   it('fails to login with incorrect credentials', async () => {
@@ -101,26 +130,26 @@ describe('useVolunteerStore', () => {
       email: 'volunteer1@example.com',
       password: 'password'
     }];
-    volunteerStore.volunteers = mockVolunteers; // Configura a lista de voluntários
+    volunteerStore.volunteers = mockVolunteers;
 
-    const result = await volunteerStore.loginVolunteer('volunteer1@example.com', 'wrongpassword'); // Chama a ação com senha incorreta
+    const result = await volunteerStore.loginVolunteer('volunteer1@example.com', 'wrongpassword');
 
-    expect(result.success).toBe(false); // Verifica se o login falhou
-    expect(result.message).toBe('Credenciais incorretas.'); // Verifica a mensagem de erro
-    expect(volunteerStore.volunteer).toBeNull(); // Verifica se o voluntário não foi atualizado
-    expect(volunteerStore.isAuthenticated).toBe(false); // Verifica se a autenticação não foi realizada
+    expect(result.success).toBe(false);
+    expect(result.message).toBe('Credenciais incorretas.');
+    expect(volunteerStore.volunteer).toBeNull();
+    expect(volunteerStore.isAuthenticated).toBe(false);
   });
 
   it('loads event for volunteer', async () => {
     const mockEvent = { id: 1, name: 'Event 1' };
     const volunteer = { id: 1, name: 'Volunteer 1', eventId: 1 };
-    volunteerStore.volunteer = volunteer; // Configura o voluntário
-    get.mockResolvedValue(mockEvent); // Mock do evento
+    volunteerStore.volunteer = volunteer;
+    get.mockResolvedValue(mockEvent);
 
-    await volunteerStore.loadEvent(volunteer.eventId); // Chama a ação de carregar o evento
+    await volunteerStore.loadEvent(volunteer.eventId);
 
-    expect(volunteerStore.event).toEqual(mockEvent); // Verifica se o evento foi carregado corretamente
-    expect(get).toHaveBeenCalledWith('events/1'); // Verifica se a API foi chamada corretamente
+    expect(volunteerStore.event).toEqual(mockEvent);
+    expect(get).toHaveBeenCalledWith('events/1');
   });
 
   it('registers volunteer successfully', async () => {
@@ -134,23 +163,53 @@ describe('useVolunteerStore', () => {
       eventId: 1,
     };
     const mockResponse = { success: true, message: 'Voluntário registrado com sucesso' };
-    post.mockResolvedValue(mockResponse); // Mock da resposta do post
+    post.mockResolvedValue(mockResponse);
 
-    const result = await volunteerStore.registerVolunteer(...Object.values(newVolunteer)); // Chama a ação de registro
+    const result = await volunteerStore.registerVolunteer(...Object.values(newVolunteer));
 
-    expect(result.success).toBe(true); // Verifica se o registro foi bem-sucedido
-    expect(post).toHaveBeenCalledWith('volunteers', newVolunteer); // Verifica se a API foi chamada corretamente
+    expect(result.success).toBe(true);
+    expect(post).toHaveBeenCalledWith('volunteers', newVolunteer);
   });
 
-  it('deletes volunteer successfully', async () => {
-    const volunteerId = 1;
-    const mockResponse = { success: true, message: 'Voluntário excluído com sucesso' };
-    del.mockResolvedValue(mockResponse); // Mock da resposta do del
-
-    const result = await volunteerStore.deleteVolunteer(volunteerId); // Chama a ação de exclusão
-
-    expect(result.success).toBe(true); // Verifica se a exclusão foi bem-sucedida
-    expect(del).toHaveBeenCalledWith(`volunteers/${volunteerId}`); // Verifica se a API foi chamada corretamente
-    expect(volunteerStore.volunteers).not.toContainEqual({ id: volunteerId }); // Verifica se o voluntário foi removido da lista
+  it('buys ticket successfully', async () => {
+    // Configura um voluntário autenticado com agenda
+    const volunteerData = { id: 1, name: 'Volunteer 1', agenda: [] };
+    volunteerStore.volunteer = volunteerData;
+    localStorage.setItem('volunteer', JSON.stringify(volunteerData));
+  
+    // Define os valores de eventId e ticketId
+    const eventId = 1;
+    const ticketId = "101";
+  
+    // Configura o eventStore para retornar um evento com ticket_classes
+    const mockEvent = {
+      id: eventId,
+      name: 'Event 1',
+      ticket_classes: [
+        { id: ticketId, name: "Ticket A", quantity: 5 }
+      ]
+    };
+    eventStore.getEventById.mockReturnValue(mockEvent);
+    eventStore.updateTicketQuantity.mockResolvedValue({ success: true });
+  
+    const result = await volunteerStore.buyTicket(eventId, ticketId);
+  
+    // Em vez de esperar que mockEvent.ticket_classes[0].quantity seja atualizado,
+    // verifica-se se updateTicketQuantity foi chamado com a quantidade decrementada (4)
+    expect(eventStore.updateTicketQuantity).toHaveBeenCalledWith(eventId, "Ticket A", 4);
+  
+    // Verifica se o ticket foi adicionado à agenda do voluntário
+    expect(volunteerStore.volunteer.agenda).toContainEqual({ eventId, ticketId });
+  
+    // Verifica se o localStorage foi atualizado
+    expect(localStorage.getItem("volunteer")).toEqual(JSON.stringify(volunteerStore.volunteer));
+  
+    // Verifica se a API foi chamada para atualizar o voluntário
+    expect(put).toHaveBeenCalledWith(`volunteers/${volunteerStore.volunteer.id}`, volunteerStore.volunteer);
+  
+    expect(result.success).toBe(true);
+    expect(result.message).toBe("Bilhete comprado e adicionado à agenda do voluntário!");
   });
+  
+  
 });

@@ -13,13 +13,16 @@ describe('useEventStore', () => {
   let store;
 
   beforeEach(() => {
-    setActivePinia(createPinia()); // Set up Pinia for each test
-    store = useEventStore(); // Initialize the store after Pinia is set
-    localStorage.clear(); // Clear any localStorage items
+    setActivePinia(createPinia()); // Configura o Pinia para cada teste
+    store = useEventStore(); // Inicializa a store
+    localStorage.clear(); // Limpa o localStorage
   });
 
   it('fetches events successfully', async () => {
-    const mockEvents = [{ id: 1, name: 'Event 1' }, { id: 2, name: 'Event 2' }];
+    const mockEvents = [
+      { id: 1, name: 'Event 1' },
+      { id: 2, name: 'Event 2' }
+    ];
     get.mockResolvedValue(mockEvents);
 
     await store.fetchEvents();
@@ -46,7 +49,8 @@ describe('useEventStore', () => {
       name: 'Event 1',
       ticket_classes: [{ name: 'VIP', quantity: 5 }],
     };
-    const updatedEvent = {
+    // Após a compra, a quantidade deverá ser decrementada para 4
+    const expectedEvent = {
       ...mockEvent,
       ticket_classes: [{ name: 'VIP', quantity: 4 }],
     };
@@ -56,8 +60,10 @@ describe('useEventStore', () => {
 
     await store.buyTicket(1, 'VIP');
 
+    // Verifica se a quantidade foi atualizada na store
     expect(store.events[0].ticket_classes[0].quantity).toBe(4);
-    expect(put).toHaveBeenCalledWith('events/1', updatedEvent);
+    // Verifica se a API foi chamada com o objeto atualizado
+    expect(put).toHaveBeenCalledWith('events/1', expectedEvent);
   });
 
   it('does not buy a ticket if the event does not exist', async () => {
@@ -72,7 +78,7 @@ describe('useEventStore', () => {
       name: 'Event 1',
       ticket_classes: [{ name: 'VIP', quantity: 5 }],
     };
-    const updatedEvent = {
+    const expectedEvent = {
       ...mockEvent,
       ticket_classes: [{ name: 'VIP', quantity: 10 }],
     };
@@ -83,7 +89,7 @@ describe('useEventStore', () => {
     await store.updateTicketQuantity(1, 'VIP', 10);
 
     expect(store.events[0].ticket_classes[0].quantity).toBe(10);
-    expect(put).toHaveBeenCalledWith('events/1', updatedEvent);
+    expect(put).toHaveBeenCalledWith('events/1', expectedEvent);
   });
 
   it('fails to update ticket quantity when event is not found', async () => {
@@ -112,15 +118,15 @@ describe('useEventStore', () => {
   it('updates event successfully', async () => {
     const mockEvent = { id: 1, name: 'Event 1' };
     const updatedEventData = { name: 'Updated Event 1' };
-    const updatedEvent = { id: 1, name: 'Updated Event 1' };
+    const expectedEvent = { id: 1, name: 'Updated Event 1' };
 
     store.events = [mockEvent];
     put.mockResolvedValue({ ok: true });
 
     await store.updateEvent(1, updatedEventData);
 
-    expect(store.events[0]).toEqual(updatedEvent);
-    expect(put).toHaveBeenCalledWith('events/1', updatedEvent);
+    expect(store.events[0]).toEqual(expectedEvent);
+    expect(put).toHaveBeenCalledWith('events/1', expectedEvent);
   });
 
   it('adds a speaker to an event successfully', async () => {
@@ -150,7 +156,11 @@ describe('useEventStore', () => {
   });
 
   it('deletes a topic from an event successfully', async () => {
-    const mockEvent = { id: 1, name: 'Event 1', topics: [{ id: 1, name: 'Topic 1' }] };
+    const mockEvent = { 
+      id: 1, 
+      name: 'Event 1', 
+      topics: [{ id: 1, name: 'Topic 1' }] 
+    };
     store.events = [mockEvent];
     put.mockResolvedValue({ ok: true });
 
@@ -168,7 +178,7 @@ describe('useEventStore', () => {
     };
     store.events = [mockEvent];
   
-    const speaker = await store.getSpeakerByEventAndSpeakerId(1, 1); // Await the promise
+    const speaker = await store.getSpeakerByEventAndSpeakerId(1, 1);
     expect(speaker).toEqual({ id: 1, name: 'Speaker 1' });
   });
   
@@ -180,8 +190,7 @@ describe('useEventStore', () => {
     };
     store.events = [mockEvent];
   
-    const speaker = await store.getSpeakerByEventAndSpeakerId(1, 2); // Await the promise
+    const speaker = await store.getSpeakerByEventAndSpeakerId(1, 2);
     expect(speaker).toBeNull();
   });
-  
 });

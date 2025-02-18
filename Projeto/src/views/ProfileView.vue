@@ -104,7 +104,7 @@
 
 
 <script>
-import { useGamificationStore } from '@/stores/gamificationStore';
+import { useGamificationStore } from '@/stores/useGamificationStore';
 import { useUserStore } from '@/stores/useUserStore';
 import { useVolunteerStore } from '@/stores/useVolunteerStore';
 import { useEventStore } from '@/stores/useEventStore';
