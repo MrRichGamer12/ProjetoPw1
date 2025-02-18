@@ -1,0 +1,45 @@
+/* Importação do arquivo base.css */
+@import './base.css';
+
+/* Certifique-se de que o #app ocupe 100% da largura e altura */
+#app {
+  width: 100%; /* Garantir que ocupe 100% da largura */
+  height: 100vh; /* Garantir que ocupe toda a altura */
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+/* Links e elementos com a classe .green */
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+/* Estilos para hover em links */
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+/* Layout responsivo para telas grandes (a partir de 1024px) */
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+    height: 100%; /* Garantir que o body ocupe a altura total */
+  }
+
+  /* Defina o layout do #app como grid, mas sem restrição de largura */
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+    width: 100%; /* Remover qualquer limite de largura */
+    height: 100%; /* Garantir que ocupe toda a altura */
+  }
+}

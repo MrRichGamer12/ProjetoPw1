@@ -1,0 +1,479 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "name": "Conferência de Tecnologia 2025",
+      "description": "Uma conferência para entusiastas de tecnologia e desenvolvedores explorarem as últimas tendências em Inteligência Artificial e programação.",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "location": "Centro de Convenções ExpoTech, São Paulo, Brasil",
+      "start_time": "2025-06-01T09:00:00Z",
+      "end_time": "2025-06-01T17:00:00Z",
+      "ticket_classes": [
+        {
+          "id": 1,
+          "name": "VIP",
+          "price": 150,
+          "quantity": 99,
+          "benefits": [
+            "Acesso exclusivo a sessões VIP com os palestrantes",
+            "Assento reservado nas apresentações principais",
+            "Kit especial com material do evento e brindes exclusivos",
+            "Acesso a uma recepção de networking com líderes do setor"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Ingresso Geral",
+          "price": 50,
+          "quantity": 500,
+          "benefits": [
+            "Acesso a todas as palestras e painéis do evento",
+            "Acesso à área de exposição com demonstrações de tecnologia",
+            "Oportunidade de interagir com outros participantes durante o evento"
+          ]
+        }
+      ],
+      "speakers": [
+        {
+          "name": "João Silva",
+          "role": "Especialista em IA",
+          "image": "https://as1.ftcdn.net/v2/jpg/07/95/95/14/1000_F_795951406_h17eywwIo36DU2L8jXtsUcEXqPeScBUq.jpg",
+          "bio": "João Silva é um renomado especialista em Inteligência Artificial com mais de 15 anos de experiência na área. Atualmente, trabalha como pesquisador sênior em aprendizado de máquina e redes neurais. Também é autor de diversos artigos científicos sobre IA explicável e redes neurais profundas."
+        },
+        {
+          "name": "Maria Oliveira",
+          "role": "Desenvolvedora de Software",
+          "image": "https://as1.ftcdn.net/v2/jpg/07/95/95/14/1000_F_795951406_h17eywwIo36DU2L8jXtsUcEXqPeScBUq.jpg",
+          "bio": "Maria Oliveira é desenvolvedora full-stack e entusiasta de tecnologias emergentes. Tem experiência em arquiteturas escaláveis e desenvolvimento de aplicações inteligentes. Atualmente, lidera projetos open-source voltados para acessibilidade digital."
+        }
+      ],
+      "topics": [
+        "Tendências em Inteligência Artificial",
+        "Desenvolvimento de Software para o Futuro",
+        "Automação no Mercado de Trabalho"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Cúpula Blockchain 2025",
+      "description": "Um evento dedicado à tecnologia blockchain, criptomoedas e inovações Web3.",
+      "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "location": "Centro de Convenções ExpoTech, São Paulo, Brasil",
+      "start_time": "2025-07-10T10:00:00Z",
+      "end_time": "2025-07-10T18:00:00Z",
+      "ticket_classes": [
+        {
+          "id": 1,
+          "name": "Premium",
+          "price": 180,
+          "quantity": 299,
+          "benefits": [
+            "Acesso prioritário às sessões principais e workshops",
+            "Kit exclusivo com materiais sobre blockchain e criptomoedas",
+            "Oportunidades de networking com especialistas da indústria",
+            "Assento VIP reservado nas principais palestras"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Padrão",
+          "price": 70,
+          "quantity": 600,
+          "benefits": [
+            "Acesso a todas as palestras sobre blockchain e Web3",
+            "Entrada na área de exposições e demonstrações de criptomoedas",
+            "Oportunidade de interagir com outros participantes durante o evento"
+          ]
+        }
+      ],
+      "speakers": [
+        {
+          "name": "Carlos Souza",
+          "role": "Especialista em Blockchain",
+          "image": "https://as1.ftcdn.net/v2/jpg/07/95/95/14/1000_F_795951406_h17eywwIo36DU2L8jXtsUcEXqPeScBUq.jpg",
+          "bio": "Carlos Souza é um entusiasta e especialista em blockchain com experiência em contratos inteligentes e finanças descentralizadas (DeFi). Trabalhou com diversas startups na implementação de soluções Web3. É palestrante internacional e mentor de startups no setor de blockchain."
+        },
+        {
+          "name": "Fernanda Costa",
+          "role": "Consultora de Criptomoedas",
+          "image": "https://as1.ftcdn.net/v2/jpg/07/95/95/14/1000_F_795951406_h17eywwIo36DU2L8jXtsUcEXqPeScBUq.jpg",
+          "bio": "Fernanda Costa atua no mercado de criptomoedas há mais de 10 anos, fornecendo consultoria para investidores e empresas interessadas em adotar a tecnologia blockchain. É cofundadora de uma das maiores plataformas de análise de criptoativos na América Latina."
+        }
+      ],
+      "topics": [
+        "Introdução ao Blockchain",
+        "Criptomoedas no Mercado Atual",
+        "Inovações em Web3"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Fórum de Cibersegurança 2025",
+      "description": "Especialistas discutem as últimas ameaças, vulnerabilidades e soluções no cenário de cibersegurança.",
+      "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "location": "Centro de Convenções ExpoTech, São Paulo, Brasil",
+      "start_time": "2025-08-05T09:30:00Z",
+      "end_time": "2025-08-05T16:30:00Z",
+      "ticket_classes": [
+        {
+          "id": 1,
+          "name": "Exclusivo",
+          "price": 220,
+          "quantity": 100,
+          "benefits": [
+            "Acesso VIP a todas as palestras e painéis especializados",
+            "Kit exclusivo de materiais sobre cibersegurança",
+            "Acesso a sessões privadas de perguntas e respostas com os palestrantes",
+            "Oportunidades de networking com especialistas de renome"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Padrão",
+          "price": 80,
+          "quantity": 500,
+          "benefits": [
+            "Acesso a todas as palestras sobre cibersegurança",
+            "Entrada nas áreas de exposição com tecnologias e soluções de segurança",
+            "Oportunidade de interagir com outros participantes e especialistas"
+          ]
+        }
+      ],
+      "speakers": [
+        {
+          "name": "Lucas Pereira",
+          "role": "Especialista em Cibersegurança",
+          "image": "https://as1.ftcdn.net/v2/jpg/07/95/95/14/1000_F_795951406_h17eywwIo36DU2L8jXtsUcEXqPeScBUq.jpg",
+          "bio": "Lucas Pereira é um renomado especialista em segurança digital, com experiência em análise de vulnerabilidades e defesa contra ataques cibernéticos. Trabalhou em diversas instituições financeiras fortalecendo suas infraestruturas de segurança."
+        },
+        {
+          "name": "Tatiane Ramos",
+          "role": "Consultora de Riscos Cibernéticos",
+          "image": "https://as1.ftcdn.net/v2/jpg/07/95/95/14/1000_F_795951406_h17eywwIo36DU2L8jXtsUcEXqPeScBUq.jpg",
+          "bio": "Tatiane Ramos atua há mais de 12 anos na área de segurança cibernética, auxiliando empresas na mitigação de riscos digitais. É palestrante internacional e especialista em conformidade com regulamentações de proteção de dados."
+        }
+      ],
+      "topics": [
+        "Ameaças Cibernéticas Emergentes",
+        "Gestão de Riscos em Cibersegurança",
+        "Proteção de Dados no Ambiente Digital"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Expo de IA & Machine Learning",
+      "description": "Uma imersão nas tendências de Inteligência Artificial e aprendizado de máquina que estão moldando o futuro.",
+      "image": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "location": "Centro de Convenções ExpoTech, São Paulo, Brasil",
+      "start_time": "2025-09-15T10:00:00Z",
+      "end_time": "2025-09-15T17:00:00Z",
+      "ticket_classes": [
+        {
+          "id": 1,
+          "name": "Exclusivo",
+          "price": 200,
+          "quantity": 80,
+          "benefits": [
+            "Acesso prioritário a todas as sessões e workshops",
+            "Kit exclusivo com materiais de IA e Machine Learning",
+            "Oportunidade de interagir com especialistas e palestrantes"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Regular",
+          "price": 90,
+          "quantity": 400,
+          "benefits": [
+            "Acesso a todas as palestras sobre IA e aprendizado de máquina",
+            "Entrada nas áreas de demonstração de soluções de IA",
+            "Oportunidade de conhecer novas tecnologias emergentes"
+          ]
+        }
+      ],
+      "speakers": [
+        {
+          "name": "Rafael Silva",
+          "role": "Especialista em IA",
+          "image": "https://as1.ftcdn.net/v2/jpg/07/95/95/14/1000_F_795951406_h17eywwIo36DU2L8jXtsUcEXqPeScBUq.jpg",
+          "bio": "Rafael Silva é um pesquisador e engenheiro de IA, com vasta experiência em aprendizado profundo e redes neurais. Trabalha em soluções de IA aplicadas a assistentes virtuais e análise de dados preditiva."
+        },
+        {
+          "name": "Ana Beatriz",
+          "role": "Pesquisadora de Machine Learning",
+          "image": "https://as1.ftcdn.net/v2/jpg/07/95/95/14/1000_F_795951406_h17eywwIo36DU2L8jXtsUcEXqPeScBUq.jpg",
+          "bio": "Ana Beatriz é doutora em ciência da computação e pesquisadora em aprendizado de máquina. Atualmente, foca seus estudos em técnicas de aprendizado não supervisionado e modelos generativos."
+        }
+      ],
+      "topics": [
+        "Avanços em Machine Learning",
+        "IA no Mercado de Trabalho",
+        "Tendências Futuras em Inteligência Artificial"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Cúpula de Desenvolvimento Frontend",
+      "description": "O evento essencial para desenvolvedores frontend explorando React, Vue.js e as melhores práticas de UI/UX.",
+      "image": "https://images.unsplash.com/photo-1610986603166-f78428624e76?q=80&w=1758&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "location": "Centro de Convenções ExpoTech, São Paulo, Brasil",
+      "start_time": "2025-10-20T09:00:00Z",
+      "end_time": "2025-10-20T16:00:00Z",
+      "ticket_classes": [
+        {
+          "id": 1,
+          "name": "Antecipado",
+          "price": 120,
+          "quantity": 150,
+          "benefits": [
+            "Acesso antecipado às palestras e workshops especializados",
+            "Kit de materiais sobre frontend e melhores práticas de UI/UX",
+            "Acesso a uma área exclusiva de networking com desenvolvedores"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Padrão",
+          "price": 60,
+          "quantity": 500,
+          "benefits": [
+            "Acesso a todas as palestras sobre React, Vue.js e UI/UX",
+            "Oportunidade de interagir com outros desenvolvedores",
+            "Acesso às demonstrações de ferramentas e tecnologias de frontend"
+          ]
+        }
+      ],
+      "speakers": [
+        {
+          "name": "Patrícia Lima",
+          "role": "Especialista em React",
+          "image": "https://as1.ftcdn.net/v2/jpg/07/95/95/14/1000_F_795951406_h17eywwIo36DU2L8jXtsUcEXqPeScBUq.jpg",
+          "bio": "Patrícia Lima é engenheira de software sênior e especialista em desenvolvimento frontend com React. Trabalha com interfaces altamente performáticas e experiência do usuário."
+        },
+        {
+          "name": "Eduardo Costa",
+          "role": "Designer de UI/UX",
+          "image": "https://as1.ftcdn.net/v2/jpg/07/95/95/14/1000_F_795951406_h17eywwIo36DU2L8jXtsUcEXqPeScBUq.jpg",
+          "bio": "Eduardo Costa é designer de produtos digitais, com foco em UI/UX para aplicativos web e móveis. Seu trabalho busca equilibrar funcionalidade e estética para proporcionar experiências intuitivas."
+        }
+      ],
+      "topics": [
+        "Tendências em Desenvolvimento Frontend",
+        "Desenvolvimento com React e Vue.js",
+        "Melhores Práticas de Design de UI/UX"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "event_id": 1,
+      "name": "Tech Conference T-Shirt",
+      "description": "Official Tech Conference 2025 t-shirt.",
+      "image": "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "price": 25.99
+    },
+    {
+      "id": "2",
+      "event_id": 1,
+      "name": "Tech Conference Notebook",
+      "description": "A sleek notebook for taking notes during the event.",
+      "image": "https://images.unsplash.com/photo-1581431886211-6b932f8367f2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "price": 12.5
+    },
+    {
+      "id": "3",
+      "event_id": 2,
+      "name": "Blockchain Summit Hoodie",
+      "description": "A stylish hoodie with Blockchain Summit branding.",
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "price": 39.99
+    },
+    {
+      "id": "4",
+      "event_id": 2,
+      "name": "Blockchain Ledger USB",
+      "description": "A secure USB for storing your blockchain keys.",
+      "image": "https://images.unsplash.com/photo-1587145820098-23e484e69816?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "price": 59.99
+    },
+    {
+      "id": "5",
+      "event_id": 3,
+      "name": "Cybersecurity Handbook",
+      "description": "An essential guide for cybersecurity professionals.",
+      "image": "https://images.unsplash.com/photo-1581431886211-6b932f8367f2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "price": 29.99
+    },
+    {
+      "id": "6",
+      "event_id": 3,
+      "name": "Secure VPN Subscription (1 year)",
+      "description": "Get one year of premium VPN service.",
+      "image": "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "price": 99.99
+    },
+    {
+      "id": "7",
+      "event_id": 4,
+      "name": "AI & ML Expo Mug",
+      "description": "A mug with AI & Machine Learning Expo logo.",
+      "image": "https://images.unsplash.com/photo-1605714196241-00bf7a8fe7bb?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "price": 14.99
+    },
+    {
+      "id": "8",
+      "event_id": 4,
+      "name": "Machine Learning Guidebook",
+      "description": "A detailed book on modern ML techniques.",
+      "image": "https://images.unsplash.com/photo-1570632715211-15e9af8a536d?q=80&w=1977&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "price": 44.99
+    },
+    {
+      "id": "9",
+      "event_id": 5,
+      "name": "Frontend Dev T-Shirt",
+      "description": "Exclusive t-shirt for front-end developers.",
+      "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "price": 22.99
+    },
+    {
+      "id": "10",
+      "event_id": 5,
+      "name": "Vue.js Stickers Pack",
+      "description": "A pack of Vue.js stickers for your laptop.",
+      "image": "https://images.unsplash.com/photo-1597919697518-faa400f9403c?q=80&w=1748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "price": 9.99
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "João Silva",
+      "email": "joao.silva@example.com",
+      "password": "123456",
+      "role": "user",
+      "cart": [],
+      "agenda": []
+    },
+    {
+      "id": "2",
+      "name": "Ana Oliveira",
+      "email": "ana.oliveira@example.com",
+      "password": "admin123",
+      "role": "admin",
+      "cart": [],
+      "agenda": []
+    },
+    {
+      "id": "3",
+      "name": "Carlos Mendes",
+      "email": "carlos.mendes@example.com",
+      "password": "pass789",
+      "role": "user",
+      "cart": [],
+      "agenda": []
+    },
+    {
+      "id": "4",
+      "name": "Ricardo Augusto",
+      "email": "ricardo_augusto@hotmail.com",
+      "password": "121202",
+      "role": "user",
+      "cart": [],
+      "agenda": []
+    }
+  ],
+  "volunteers": [
+    {
+      "id": "1",
+      "name": "Carlos Silva",
+      "age": 28,
+      "email": "carlos.silva@example.com",
+      "experience": "Experiência em eventos culturais e sociais.",
+      "preferredRole": "Receção",
+      "shift": "Manhã",
+      "eventId": 1,
+      "points": 0,
+      "password": "senha123",
+      "cart": [],
+      "agenda": [
+        {
+          "eventId": "2",
+          "ticketId": 1
+        }
+      ],
+      "role": "volunteer"
+    },
+    {
+      "id": "2",
+      "name": "Maria Oliveira",
+      "age": 34,
+      "email": "maria.oliveira@example.com",
+      "experience": "Voluntária em eventos de arrecadação de fundos.",
+      "preferredRole": "Apoio",
+      "shift": "Tarde",
+      "eventId": 2,
+      "points": 0,
+      "password": "senha456",
+      "cart": [],
+      "agenda": []
+    },
+    {
+      "id": "3",
+      "name": "João Pereira",
+      "age": 21,
+      "email": "joao.pereira@example.com",
+      "experience": "Ajuda na organização de eventos de tecnologia.",
+      "preferredRole": "Assistência",
+      "shift": "Noite",
+      "eventId": 3,
+      "points": 0,
+      "password": "senha789",
+      "cart": [],
+      "agenda": []
+    },
+    {
+      "id": "4",
+      "name": "Ana Costa",
+      "age": 25,
+      "email": "ana.costa@example.com",
+      "experience": "Experiência em organização de eventos de arte.",
+      "preferredRole": "Receção",
+      "shift": "Manhã",
+      "eventId": 1,
+      "points": 0,
+      "password": "senha101",
+      "cart": [],
+      "agenda": []
+    },
+    {
+      "id": "5",
+      "name": "Pedro Martins",
+      "age": 29,
+      "email": "pedro.martins@example.com",
+      "experience": "Experiência com eventos musicais e festas.",
+      "preferredRole": "Apoio",
+      "shift": "Tarde",
+      "eventId": 2,
+      "points": 0,
+      "password": "senha202",
+      "cart": [],
+      "agenda": []
+    },
+    {
+      "id": "6",
+      "name": "Luísa Ferreira",
+      "age": 32,
+      "email": "luisa.ferreira@example.com",
+      "experience": "Voluntária em eventos beneficentes.",
+      "preferredRole": "Assistência",
+      "shift": "Noite",
+      "eventId": 3,
+      "points": 0,
+      "password": "senha303",
+      "cart": [],
+      "agenda": []
+    }
+  ]
+}
